@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body oncontextmenu='return false' class='snippet-body'>
+<body id="body-pd">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="l-navbar" id="nav-bar">
+		<nav class="nav">
+			<div>
+				<a th:href="@{/index}"><img class="ms-2"
+					src="/img/logo_blanco.png" height="200" width="220"></img> </a>
+					<br><br><br><br>
+				<div class="nav_list">
+					<a th:href="@{/index}" class="nav_link text-light"> <i
+						class='fs-4 bi-house'></i> <span class="nav_name">Inicio</span>
+					</a> <a th:href="@{/listarRuta}" class="nav_link active text-light"> <span
+						class="material-icons text-center">edit_road</span> <span
+						class="nav_name">Rutas</span>
+					</a> <a th:href="@{/listarPuntoRecarga}" class="nav_link text-light">
+						<i class="bi bi-credit-card-2-back"></i> <span class="nav_name">Puntos
+							de Recarga</span>
+					</a>
+				</div>
+			</div>
+			<a th:href="@{/login}" class="nav_link text-light"> <i
+				class="bi bi-box-arrow-in-right"></i> <span class="nav_name">Iniciar
+					Sesión</span>
+			</a>
+		</nav>
+	</div>
+
+	<!--Contenido de la Pagina-->
+	<div class=" bg-light">
+		<h3 class="mt-4 text-center" style="font-size:28px;font-family: 'Poppins', sans-serif;" >Listado de Rutas</h3>
+		
+			<h5 class="text-center">Aquí encontraras todas las rutas disponibles</h5>
+		
+
+		<div class="container col-sm-10 mt-4">
+
+			<table id="tabla" class="table table-striped">
+
+				<thead class="text-center text-white" style="background-color:#fc8876">
+
+					<tr>
+
+						<th>Nombre</th>
+						<th>Recorrido</th>
+						<th>Tipo</th>
+						<th>Paradas</th>
+						<th>Frecuencia</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="ruta:${ruta}">
+
+						<td class="text-center" th:text="${ruta.nombre}"></td>
+						<td th:text="${ruta.recorrido}"></td>
+						<td class="text-center" th:text="${ruta.tipo}"></td>
+						<td><th:block th:each="parada,iter: ${ruta.parada}">
+								<label th:text="${parada.ubicacion}"></label>
+
+								<th:block th:if="${!iter.last}">
+									<br>
+								</th:block>
+							</th:block></td>
+						<td class="text-center"><th:block
+								th:each="frecuencia,iter: ${ruta.frecuencia}">
+								<label th:text="${frecuencia.descripcion}"></label>
+
+								<th:block th:if="${!iter.last}">
+									<br>
+								</th:block>
+							</th:block></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<br>
+		<br>
+		<footer th:replace="layout/layout :: footer"></footer>
+	</div>
+
+	<div th:replace="layout/layout :: scripts"></div>
+
+</body>
+</html>

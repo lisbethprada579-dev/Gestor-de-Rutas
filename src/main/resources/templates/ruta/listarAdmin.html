@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutAdmin :: head"></head>
+<body>
+	<header th:replace="layout/layoutAdmin :: header"></header>
+	<br>
+	<br>
+	<br>	
+	<br>
+	<br>
+	<h3 class="mt-4 text-center" style="font-size:28px;font-family: 'Poppins', sans-serif;" >Listado de Rutas</h3>
+	
+	<div class="container col-sm-10 mt-4">
+<a th:href="@{/admin/crearRuta}"
+			class="btn btn-secondary mx-auto mb-4"><i class="bi bi-folder-plus"></i></a>
+		
+
+		<table id="tabla" class="table table-striped">
+
+			<thead class="table-dark text-center">
+			
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Recorrido</th>
+					<th>Tipo</th>
+					<th>Paradas</th>
+					<th>Frecuencia</th>
+					<th class="col-sm-2">Acción</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="ruta:${ruta}">
+					<td class="text-center" th:text="${ruta.id}"></td>
+					<td class="text-center" th:text="${ruta.nombre}"></td>
+					<td th:text="${ruta.recorrido}"></td>
+					<td class="text-center" th:text="${ruta.tipo}"></td>
+					<td>
+						<th:block th:each="parada,iter: ${ruta.parada}">
+							<label th:text="${parada.ubicacion}"></label>
+
+							<th:block th:if="${!iter.last}"><br> </th:block>
+						</th:block>
+					</td>
+					<td class="text-center">
+						<th:block th:each="frecuencia,iter: ${ruta.frecuencia}">
+							<label th:text="${frecuencia.descripcion}"></label>
+
+							<th:block th:if="${!iter.last}"><br> </th:block>
+						</th:block>
+					</td>
+					<td class="text-center">
+
+						<a th:href="@{/admin/editarRuta/}+${ruta.id}" class="btn btn-primary"> 
+						<i  class="bi bi-pencil-square"></i>
+						</a>
+						<a th:href="@{/admin/eliminarRuta/}+${ruta.id}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<br>
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title th:text="${titulo}"></title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans+Condensed:wght@300&family=Poppins:wght@500&family=Raleway:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="static/css/estilo.css"
+	th:href="@{/css/estilo.css}">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/puntoRecargaFunciones.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('#tabla')
+								.DataTable(
+										{
+											//para cambiar el lenguaje a espa�ol
+											"language" : {
+												"lengthMenu" : "Mostrar registros _MENU_  <br><br>",
+												"zeroRecords" : "No se encontraron resultados",
+												"info" : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+												"infoEmpty" : "Mostrando registros del 0 al 0 de un total de 0 registros",
+												"infoFiltered" : "(filtrado de un total de _MAX_ registros)",
+												"sSearch" : "Buscar:",
+												"oPaginate" : {
+													"sFirst" : "Primero",
+													"sLast" : "último",
+													"sNext" : "Siguiente",
+													"sPrevious" : "Anterior"
+												},
+												"sProcessing" : "Procesando...",
+											}
+										});
+					});
+</script>
+<style>
+#nav:hover {
+	background-color: #fc8876;
+	border-radius: 5px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+	<header th:fragment="header">
+		<nav style="position: fixed; width: 100%; z-index: 1000;background-color: #FF735C;"
+			class="navbar navbar-expand-lg navbar-light ">
+			<!-- color de fondo -->
+			<!-- Container wrapper -->
+			<div class="container-fluid ">
+				<!-- Toggle button -->
+				<button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+					data-mdb-target="#navbarCenteredExample" aria-controls="navbarCenteredExample" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Collapsible wrapper -->
+				<div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample" style="font-size:18px;font-family: 'Raleway', sans-serif;">
+					<!-- Left links -->
+					<ul class="navbar-nav mb-2 mb-lg-0">
+						<li class="nav-item px-4"><a th:href="@{/admin/index}"><img src="/img/logo1.png" height="100"
+									width="220"></img></a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" class="nav-link text-white" aria-current="page"
+								th:href="@{/admin/index}">Inicio </a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" th:href="@{/admin/listarUsuario}"
+								class="nav-link text-white">Usuario</a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" th:href="@{/admin/listarPuntoRecarga}"
+								class="nav-link text-white " aria-current="page" href="#">Puntos de recarga</a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" th:href="@{/admin/listarParada}"
+								class="nav-link text-white">Paradas</a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" th:href="@{/admin/listarFrecuencia}"
+								class="nav-link text-white">Frecuencias</a></li>
+						<li class="nav-item px-4 mt-3"><a id="nav" th:href="@{/admin/listarRuta}"
+								class="nav-link text-white">Rutas</a></li>
+					</ul>
+					<!-- Left links -->
+				</div>
+				<!-- Collapsible wrapper -->
+
+				<a th:href="@{/index?logout}" class="btn btn-light text-dark" type="button"><i
+						class="bi bi-door-open-fill"></i></a>
+
+			</div>
+			<!-- Container wrapper -->
+		</nav>
+
+	</header>
+
+</body>
+
+</html>

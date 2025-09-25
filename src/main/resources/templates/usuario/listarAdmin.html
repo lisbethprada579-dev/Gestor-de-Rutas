@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layoutAdmin :: head"></head>
+<body>
+	<header th:replace="layout/layoutAdmin :: header"></header>
+	<br>
+	<br>
+	<br>	
+	<br>
+	<br>
+	<h3 class="mt-4 text-center" style="font-size:28px;font-family: 'Poppins', sans-serif;">Listado de Usuarios</h3>
+
+	<div class="container col-sm-10 mt-4">
+		<a th:href="@{/admin/crearUsuario}"
+			class="btn btn-secondary mx-auto mb-4"><i
+			class="bi bi-folder-plus"></i></a>
+
+		<table id="tabla" class="table table-striped text-center">
+
+			<thead class="table-dark ">
+				<tr>
+					<th>ID</th>
+					<th>USUARIO</th>
+					<th>CONTRASEÑA</th>
+					<th>ACCIÓN</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="usuario :${usuario}">
+					<td th:text="${usuario.id}"></td>
+					<td th:text="${usuario.username}"></td>
+					<td th:text="${usuario.password}"></td>
+
+					<td><a
+						th:href="@{/admin/editarUsuario/}+${usuario.id}"
+						class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> <a
+						th:href="@{/admin/eliminarUsuario/}+${usuario.id}"
+						class="btn btn-danger"> <i class="bi bi-trash-fill"></i></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<br>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

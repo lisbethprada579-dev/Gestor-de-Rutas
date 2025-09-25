@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutAdmin :: head"></head>
+<body>
+	<header th:replace="layout/layoutAdmin :: header"></header>
+	<br>
+	<br>
+	<br>	
+	<br>
+	<br>
+	<h3 class="mt-4 text-center" style="font-size:28px;font-family: 'Poppins', sans-serif;">Listado de Frecuencias</h3>
+
+	<div class="container col-sm-10 mt-4">
+		<a th:href="@{/admin/crearFrecuencia}"
+			class="btn btn-secondary mx-auto mb-4"><i
+			class="bi bi-folder-plus"></i></a>
+		<table id="tabla" class="table table-striped">
+
+			<thead class="table-dark text-center">
+				<tr>
+					<th class="col-sm-1">ID</th>
+					<th class="col-sm-9">DESCRIPCIÓN</th>
+					<th class="col-sm-2">ACCIÓN</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="frecuencia:${frecuencia}">
+					<td class="text-center" th:text="${frecuencia.id}"></td>
+					<td th:text="${frecuencia.descripcion}"></td>
+					<td class=" text-center"><a th:href="@{/admin/editarFrecuencia/}+${frecuencia.id}"
+						class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> <a
+						th:href="@{/admin/eliminarFrecuencia/}+${frecuencia.id}"
+						class="btn btn-danger"> <i class="bi bi-trash-fill"></i></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+<br>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+
+
+</body>
+
+</html>

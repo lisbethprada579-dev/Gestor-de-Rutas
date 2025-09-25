@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layoutAdmin :: head"></head>
+
+<body>
+	<header th:replace="layout/layoutAdmin :: header"></header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container mt-4">
+		<div class="col-sm-6 mx-auto">
+
+			<div class="card bg-light">
+				<div class="card-header text-white text-center" style="background-color:#6EAC42">Nueva ruta</div>
+
+				<form th:action="@{/admin/saveRuta}" th:object=${ruta} method="POST">
+
+					<div class="form-group">
+
+						<div class="card-body">
+							<div class="form-group" hidden>
+								<label class="col-sm-4 col-form-label">ID</label> <input th:field="*{id}" type="text"
+									class="form-control" />
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 col-form-label">Nombre</label> <input th:field="*{nombre}"
+									type="text" class="form-control mt-2" />
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 col-form-label">Recorrido</label> <input th:field="*{recorrido}"
+									type="text" class="form-control mt-2" />
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 col-form-label">Tipo</label> <select th:field="*{tipo}" name="tipo" id="tipo"
+									class="form-select">
+									<option value="Bus">Bus</option>
+									<option value="Transporte Masivo">Transporte Masivo</option>
+								</select>
+							</div>
+							<div class="row">
+								<div class="form-group col-sm-6">
+									<label class="col-sm-4 col-form-label">Paradas</label> <select
+										th:field="${ruta.parada}" class="form-select" multiple="multiple">
+
+										<option th:each="parada :${parada}" th:value="${parada.id_parada}"
+											th:text="${parada.ubicacion}">
+										</option>
+									</select><br />
+								</div>
+								<div class="form-group col-sm-6">
+									<label class="col-sm-4 col-form-label">Frecuencias</label> <select
+										th:field="${ruta.frecuencia}" class="form-select" multiple="multiple">
+										<option th:each="frecuencia :${frecuencia}" th:value="${frecuencia.id}"
+											th:text="${frecuencia.descripcion}">
+										</option>
+									</select><br />
+								</div>
+							</div>
+							<h4 class="card-title mt-4 text-center">
+
+								<input type="submit" value="Enviar" class="btn text-white"
+									style="background-color:#6EAC42;" />
+							</h4>
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+		</div>
+		</div>
+		<br>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>
